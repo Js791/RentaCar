@@ -1,5 +1,5 @@
 
-<div class="container" id="flash">
+<div class="container-fluid" id="flash">
     <?php $messages = getMessages(); ?>
     <?php if ($messages) : ?>
         <?php foreach ($messages as $msg) : ?>

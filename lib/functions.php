@@ -15,10 +15,8 @@ function se($v, $k = null, $default = "", $isEcho = true)
         $returnValue = $default;
     }
     if ($isEcho) {
-        //https://www.php.net/manual/en/function.htmlspecialchars.php
         echo htmlspecialchars($returnValue, ENT_QUOTES);
     } else {
-        //https://www.php.net/manual/en/function.htmlspecialchars.php
         return htmlspecialchars($returnValue, ENT_QUOTES);
     }
 }
@@ -41,12 +39,10 @@ function is_valid_email($email = "")
     return filter_var(trim($email), FILTER_VALIDATE_EMAIL);
 }
 function redirect($path)
-{ //header headache
-    //https://www.php.net/manual/en/function.headers-sent.php#90160
-    /*headers are sent at the end of script execution otherwise they are sent when the buffer reaches it's limit and emptied */
+{ 
     if (!headers_sent()) {
         //php redirect
-        redirect(get_url($path));
+        die(header("Location: " . get_url($path)));
     }
     //javascript redirect
     echo "<script>window.location.href='" . get_url($path) . "';</script>";
@@ -54,7 +50,7 @@ function redirect($path)
     echo "<noscript><meta http-equiv=\"refresh\" content=\"0;url=" . get_url($path) . "\"/></noscript>";
     die();
 }
-function is_logged_in($redirect = false, $destination = "login.php") //function for branch purposes
+function is_logged_in($redirect = false, $destination = "home.php") 
 {
     $isLoggedIn = isset($_SESSION["user"]);
     if ($redirect && !$isLoggedIn) {
@@ -63,13 +59,7 @@ function is_logged_in($redirect = false, $destination = "login.php") //function 
     }
     return $isLoggedIn; //se($_SESSION, "user", false, false);
 }
-function get_user_email()
-{
-    if (is_logged_in()) { //we need to check for login first because "user" key may not exist
-        return se($_SESSION["user"], "email", "", false);
-    }
-    return "";
-}
+
 function flash($msg = "", $color = "info")
 {
     $message = ["text" => $msg, "color" => $color];
@@ -123,4 +113,5 @@ function reset_session()
     session_destroy();
     session_start();
 }
+
 ?>

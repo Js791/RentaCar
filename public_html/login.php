@@ -1,119 +1,130 @@
 <?php
 include_once '../lib/functions.php';
-$email = se($_POST,"e","",false);
+$email = se($_POST, "e", "", false);
+session_start();
 ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<section class="vh-100">
-    <div id="E"></div>
-    <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-      <div id ="target"></div>
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="carrental.jpg" class="img-fluid" alt="Rental Logo" style="position:relative;bottom:40px">
-      </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form onsubmit="return validate(this)" method="POST">
-          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-          </div>
 
-          <div class="divider d-flex align-items-center my-4">
-          </div>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet"/>
+</head>
 
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example3">Email address</label>
-            <input type="email" id="form3Example3" class="form-control form-control-lg" placeholder="Enter a valid email address" name="e" value = <?php se($email)?>></input>
-          </div>
+<body>
+    <section class="vh-100">
+        <div id="E"></div>
+        <div class="container-fluid h-custom">
+            <section class="container">
+                <div class="fullBackground"></div>
+                    <div id="target"></div>
+            </section>
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div id="target"></div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <img src="photos/attachment_62504124-removebg-preview.png" class="img" width="400" height="400">
+                    <form class="loginBox" onsubmit=True method="POST">
+                        <h1>Login</h1>
+                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                        </div>
+                        <div class="divider d-flex align-items-center my-4">
+                        </div>
 
-          <!-- Password input -->
-          <div class="form-outline mb-3">
-            <label class="form-label" for="form3Example4">Password</label>
-            <input type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" name="p"></input>
-          </div>
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form3Example3"></label>
+                            <input type="email" id="form3Example3" class="form-control form-control-lg" placeholder="Enter a valid email address" name="e" required value=<?php se($email) ?>></input>
+                        </div>
 
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <input type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" value ="Login"></input>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.php" class="link-danger">Register</a></p>
-          </div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <label class="form-label" for="form3Example4"></label>
+                            <input type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" name="p" required minlength="8"></input>
+                        </div>
 
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-<script>
-     function validate(form) //client side validation
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Checkbox -->
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                                <input type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Login"></input>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.php" class="link-danger" style="font-size:25px; padding-left: 2.5rem; padding-right: 2.5rem;">Register</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="JsHelpers/fullclip.js"></script>
+        <script src="JsHelpers/fullclip.min.js"></script>
+        <script>
+            $('.fullBackground').fullClip({
+                images: ['photos/911.jpg','photos/db11.jpg','photos/r8.jpg','photos/amg.jpg'],
+                transitionTime:3000,
+                wait: 5000
+            });
+        </script>
+    </section>
+</body>
+<style>
+    .loginBox
     {
+        height: 50% !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%,-50%) !important;
+        font: white !important;
+        outline: none !important;
+        color: white !important;
+        border: 6px solid rgba(255,255,255,0.438) !important;
+        box-sizing: content-box !important;
+        width: 300px !important;
+        height: 300px !important;
+        padding: 75px !important;
         
-         const error = document.getElementById("E");
-         let email = document.getElementsByName("e")[0].value;
-         let password = document.getElementsByName("p")[0].value;
-         let errors = [];
-
-            if(password.length < 8 )
-            {
-                if(!password)
-                {
-                    errors.push("Passsword must be filled out");
-                }
-                else
-                {
-                    errors.push("Password too short");
-                }
-               
-            }
-
-            if(!email)
-            {
-                errors.push("Email must not be empty");
-            }
-
-            if(!(email.includes("@")))
-            {
-                errors.push("Not a valid email");
-            }
-
-            if(!(/^([a-zA-Z\d\.-]+)@([a-z\d]+)\.([a-z]{2,8}(\.[a-z]{2,8})?)$/.test(email)))
-            {   
-                    errors.push("Email is not in the correct form");
-            }
-            
-            if(errors.length != 0)
-            {
-                error.innerText = errors.join(', ');
-                return false;
-            }
-
-            return true;
     }
-</script>
+
+    .loginBox h1
+    {
+        text-align: center !important;
+        height: 5% !important;
+        top: 50% !important;
+        bottom: 50% !important;
+        font-size: 40px !important;
+        color: white !important;
+
+    }
+    .img
+    {
+        position: relative !important;
+        top: -270px !important;
+        left:-675px !important;
+        
+    }
+    #E
+    {
+        color:white !important;
+    }
+
+</style>
 <?php
-if (isset($_POST["e"]) && isset($_POST["p"])) 
-{
+if (isset($_POST["e"]) && isset($_POST["p"])) {
     $email = se($_POST, "e", "", false);
     $password = se($_POST, "p", "", false);
     $hasErrors = false;
-    if (empty($email)) 
-    {
+    if (empty($email)) {
         flash("Email must be typed in", "warning");
         $hasErrors = true;
     }
-    if (str_contains($email, "@")) 
-    {
+    if (str_contains($email, "@")) {
         $email = sanitize_email($email);
-  
-        if (!is_valid_email($email)) 
-        {
+
+        if (!is_valid_email($email)) {
             flash("Invalid email address", "warning");
             $hasErrors = true;
         }
-    } 
+    }
 
-    if (empty($password)) 
-    {
-        flash("Password must be typed in","warning");
+    if (empty($password)) {
+        flash("Password must be typed in", "warning");
         $hasErrors = true;
     }
 
@@ -122,42 +133,30 @@ if (isset($_POST["e"]) && isset($_POST["p"]))
         $hasErrors = true;
     }
 
-    if ($hasErrors) 
-    {
+    if ($hasErrors) {
         //Nothing to output here,if errors then previous if stmts will handle it.
-    } 
-    else 
-    {
+    } else {
         $db = getDB();
         $stmt = $db->prepare("SELECT id,email,name,pass from Users where email = :email");
-        try 
-        {
+        try {
             $r = $stmt->execute([":email" => $email]);
-            if ($r) 
-            {
+            if ($r) {
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($user) 
-                {
+                if ($user) {
                     $hash = $user["pass"];
                     unset($user["pass"]);
-                    if (password_verify($password, $hash)) 
-                    {
+                    if (password_verify($password, $hash)) {
                         flash("Welcome!");
                         $_SESSION["user"] = $user;
-                    } 
-                    else 
-                    {
+                        redirect('home.php');
+                    } else {
                         flash("Invalid password", "danger");
                     }
-                } 
-                else 
-                {
+                } else {
                     flash("Email not found", "danger");
                 }
             }
-        } 
-        catch (Exception $e) 
-        {
+        } catch (Exception $e) {
             flash(var_export($e, true));
         }
     }
